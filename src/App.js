@@ -1,26 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import UserItem from "./components/UserItem";
+
+import {connect} from "react-redux";
+import {fetchData} from "./actions/testTastAction";
+import {testTaskReducer} from "./reducer/testTaskReducer";
+
+
+class App extends React.Component{
+
+
+    // changeValue(){
+    //     let url = "https://yalantis-react-school.herokuapp.com/api/task0/users";
+    //     let value = this.text.value;
+    //     this.props.toProps(url)
+    // }
+
+    componentDidMount() {
+        this.props.toProps("https://yalantis-react-school.herokuapp.com/api/task0/users")
+    }
+
+    render() {
+        return(
+            <React.Fragment>
+                <h1>user list:</h1>
+                {this.props.data.map((data) => {
+                    let dataDOB = new Date(data.dob);
+                    return(
+                        <h5 key={dataDOB}>{dataDOB.getMonth()}</h5>
+                    )
+                })}
+                <input type="text" />
+                <button></button>
+            </React.Fragment>
+
+        )
+    }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return({
+        data: state.testTask
+    })
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return({
+        toProps: (data) => dispatch(fetchData(data))
+    })
+};
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
