@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.monthList>li:hover
+
+.monthList>li:hover{
+  list-style-type: disc;
+}

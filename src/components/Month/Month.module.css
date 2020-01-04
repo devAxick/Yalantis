@@ -1,0 +1,22 @@
+.month{
+    font-size: 16px;
+    max-width: 300px;
+    list-style-type: none;
+}
+
+.month:hover{
+    list-style-type: circle;
+}
+
+
+
+.nameList{
+    position: absolute;
+    left: 190px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    width: 150px;
+    box-shadow: 0 0 5px 0 black;
+}
+
